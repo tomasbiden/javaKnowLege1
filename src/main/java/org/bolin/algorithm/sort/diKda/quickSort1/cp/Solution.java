@@ -1,4 +1,4 @@
-package org.bolin.algorithm.sort.diKda.cp.qickSort;
+package org.bolin.algorithm.sort.diKda.quickSort1.cp;
 
 import java.util.Random;
 

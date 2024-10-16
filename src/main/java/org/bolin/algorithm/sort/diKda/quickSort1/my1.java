@@ -1,4 +1,4 @@
-package org.bolin.algorithm.sort.diKda.my.quickSort;
+package org.bolin.algorithm.sort.diKda.quickSort1;
 
 public class my1 {
 //    问题真的太多了啊
