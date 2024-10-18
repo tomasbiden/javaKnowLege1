@@ -1,6 +1,9 @@
 package org.mutiThred.Leecode.L1114printBySequence.myself;
 
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.ReentrantLock;
 
 class my1 {
     static Object lock=new Object();
@@ -163,6 +166,12 @@ class my1 {
         thread2.start();
 
 
+        ReentrantLock reentrantLock = new ReentrantLock();
+        Semaphore semaphore = new Semaphore(2);
+
+//         new Semaphore()
+//        Synchronized
+//        AbstractQueuedSynchronizer
 
 //        new Thread()
 

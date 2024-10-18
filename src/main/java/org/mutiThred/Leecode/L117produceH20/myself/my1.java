@@ -85,8 +85,10 @@ public class my1 {
         thred1.start();
         thred3.start();
 
+//        thred3.getState()
 
         Thread.sleep(4000);
+
 
     }
 
