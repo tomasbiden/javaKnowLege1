@@ -3,13 +3,14 @@ package org.bolin.algorithm.Tree.Leecode.L102levelOrder.my;
 import org.bolin.algorithm.Tree.model.TreeNode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-public class my1_1020 {
+public class my1_1020_optimize1 {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
 
-        ArrayList<TreeNode> tmpQueue = new ArrayList<>();
+
 
         List<List<Integer>> res = new ArrayList<>();
 
@@ -17,36 +18,36 @@ public class my1_1020 {
             return  res;
         }
 
+        LinkedList<TreeNode> tmpQueue = new LinkedList<>();
+
         tmpQueue.add(root);
 //        !=null 错误的啊
-
+//          queue,不能用 ArrayList 而是应该用 LinkedList啊
         while (tmpQueue.size()>0){
             ArrayList<Integer> tmpValueList = new ArrayList<>();
-
-            ArrayList<TreeNode> sonNodes = new ArrayList<TreeNode>();
             int size=tmpQueue.size();
-            int i=0;
-            while (i<size){
 
-                TreeNode treeNode = tmpQueue.get(i);
+            while (size>0){
 
-                System.out.println(tmpQueue.size()+" "+ treeNode.val);
+                TreeNode head = tmpQueue.poll();
+
+
 //                tmpQueue.remove(0);
-                if(treeNode.left!=null){
-                    sonNodes.add(treeNode.left);
+                if(head.left!=null){
+                    tmpQueue.add(head.left);
                 }
 
-                if(treeNode.right!=null){
-                    sonNodes.add(treeNode.right);
+                if(head.right!=null){
+                    tmpQueue.add(head.right);
                 }
 
-                tmpValueList.add(treeNode.val);
-                i++;
+                tmpValueList.add(head.val);
+                size--;
 
 
 
             }
-            tmpQueue=sonNodes;
+
             res.add(tmpValueList);
 
 
@@ -65,7 +66,7 @@ public class my1_1020 {
         treeNode1.left=treeNode2;
         treeNode1.right=treeNode3;
 
-        my1_1020 my11020 = new my1_1020();
+        my1_1020_optimize1 my11020 = new my1_1020_optimize1();
         my11020.levelOrder(treeNode1);
 
 
