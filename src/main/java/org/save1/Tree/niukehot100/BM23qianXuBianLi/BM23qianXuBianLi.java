@@ -1,7 +1,7 @@
 package org.save1.Tree.niukehot100.BM23qianXuBianLi;
 
 
-import org.save1.Tree.niukehot100.model.TreeNode;
+import org.bolin.algorithm.Tree.model.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

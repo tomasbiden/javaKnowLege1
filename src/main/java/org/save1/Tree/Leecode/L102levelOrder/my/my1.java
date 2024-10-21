@@ -1,6 +1,6 @@
 package org.save1.Tree.Leecode.L102levelOrder.my;
 
-import org.save1.Tree.niukehot100.model.TreeNode;
+import org.bolin.algorithm.Tree.model.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

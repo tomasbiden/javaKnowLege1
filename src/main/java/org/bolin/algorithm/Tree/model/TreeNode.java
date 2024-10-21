@@ -1,4 +1,4 @@
-package org.save1.Tree.niukehot100.model;
+package org.bolin.algorithm.Tree.model;
 
 public class TreeNode {
     public int val = 0;
