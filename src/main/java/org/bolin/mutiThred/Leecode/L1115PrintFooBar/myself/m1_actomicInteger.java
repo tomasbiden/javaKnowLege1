@@ -1,18 +1,14 @@
-package org.mutiThred.Leecode.L1115PrintFooBar.myself;
+package org.bolin.mutiThred.Leecode.L1115PrintFooBar.myself;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //刚才不应该在错误代码直接修改的，应该是先复杂再修改
-class my3_volatile {
+class m1_actomicInteger {
     private int n;
-    volatile  int vi=0;
+
     AtomicInteger atomicInteger=new AtomicInteger(0);
 
-    static SimpleDateFormat sdf = new SimpleDateFormat("ss:SSS");
-
-    public my3_volatile(int n) {
+    public m1_actomicInteger(int n) {
         this.n = n;
     }
 
@@ -20,16 +16,16 @@ class my3_volatile {
 
         for (int i = 0; i < n; i++) {
 
-            while(vi==1){
-                Thread.yield();
+            while(atomicInteger.get()==1){
 //                System.out.println("foo等待中，为1");
+                Thread.yield();
 
             }
             // printFoo.run() outputs "foo". Do not change or remove this line.
 //            System.out.println("foo"+atomicInteger.get());
 
             printFoo.run();
-            vi=1;
+            atomicInteger.incrementAndGet();
 
 
 //            atomicInteger.incrementAndGet();
@@ -43,9 +39,9 @@ class my3_volatile {
         for (int i = 0; i < n; i++) {
 
 //            注意这里是0 而不是1
-            while(vi==0){
-                Thread.yield();
+            while(atomicInteger.get()==0){
 //                System.out.println("bar等待中，为0");
+                Thread.yield();
             }
 
             // printBar.run() outputs "bar". Do not change or remove this line.
@@ -54,18 +50,18 @@ class my3_volatile {
 //            atomicInteger.decrementAndGet();
 //            Thread.sleep(100);
             printBar.run();
-            vi=0;
+            atomicInteger.decrementAndGet();
         }
     }
 
     public static void main(String [] args) throws InterruptedException {
-        my3_volatile my1 = new my3_volatile(10);
+        m1_actomicInteger my1 = new m1_actomicInteger(13);
         Thread f00 = new Thread(() -> {
             try {
                 my1.foo(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("foo");
+                        System.out.println("0f");
                     }
                 });
             } catch (InterruptedException e) {
@@ -78,7 +74,7 @@ class my3_volatile {
                 my1.bar(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("bar");
+                        System.out.println("1b");
                     }
                 });
             } catch (InterruptedException e) {
@@ -86,16 +82,11 @@ class my3_volatile {
             }
 
         });
-        Date date = new Date();
-
 
         f00.start();
         bar.start();
+        Thread.sleep(5000);
 
-
-        f00.join();
-        bar.join();
-        System.out.println(sdf.format(new Date().getTime()-date.getTime()));
 
     }
 }

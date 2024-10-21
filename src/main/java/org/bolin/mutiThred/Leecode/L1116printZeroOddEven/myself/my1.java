@@ -1,4 +1,4 @@
-package org.mutiThred.Leecode.L1116printZeroOddEven.myself;
+package org.bolin.mutiThred.Leecode.L1116printZeroOddEven.myself;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntConsumer;

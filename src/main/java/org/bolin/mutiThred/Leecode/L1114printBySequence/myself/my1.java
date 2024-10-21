@@ -1,8 +1,7 @@
-package org.mutiThred.Leecode.L1114printBySequence.myself;
+package org.bolin.mutiThred.Leecode.L1114printBySequence.myself;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.ReentrantLock;
 
 class my1 {

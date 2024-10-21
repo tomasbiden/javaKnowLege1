@@ -1,19 +1,18 @@
-package org.mutiThred.Leecode.L1115PrintFooBar.myself;
+package org.bolin.mutiThred.Leecode.L1115PrintFooBar.myself;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
 //刚才不应该在错误代码直接修改的，应该是先复杂再修改
-class my2 {
+class my3_volatile {
     private int n;
-    static SimpleDateFormat sdf = new SimpleDateFormat("sss");
-
+    volatile  int vi=0;
     AtomicInteger atomicInteger=new AtomicInteger(0);
 
-    public my2(int n) {
+    static SimpleDateFormat sdf = new SimpleDateFormat("ss:SSS");
+
+    public my3_volatile(int n) {
         this.n = n;
     }
 
@@ -21,16 +20,16 @@ class my2 {
 
         for (int i = 0; i < n; i++) {
 
-            while(!atomicInteger.compareAndSet(0,1)){
-//                Thread.yield();
-                System.out.println("foo等待中，为1");
+            while(vi==1){
+                Thread.yield();
+//                System.out.println("foo等待中，为1");
 
             }
             // printFoo.run() outputs "foo". Do not change or remove this line.
 //            System.out.println("foo"+atomicInteger.get());
 
             printFoo.run();
-
+            vi=1;
 
 
 //            atomicInteger.incrementAndGet();
@@ -43,9 +42,10 @@ class my2 {
 
         for (int i = 0; i < n; i++) {
 
-            while(!atomicInteger.compareAndSet(atomicInteger.get(),0)){
-//                Thread.yield();
-                System.out.println("bar等待中，为0");
+//            注意这里是0 而不是1
+            while(vi==0){
+                Thread.yield();
+//                System.out.println("bar等待中，为0");
             }
 
             // printBar.run() outputs "bar". Do not change or remove this line.
@@ -54,45 +54,48 @@ class my2 {
 //            atomicInteger.decrementAndGet();
 //            Thread.sleep(100);
             printBar.run();
-
+            vi=0;
         }
     }
 
     public static void main(String [] args) throws InterruptedException {
-        my2 my1 = new my2(8);
+        my3_volatile my1 = new my3_volatile(10);
         Thread f00 = new Thread(() -> {
             try {
                 my1.foo(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("0f"+" "+sdf.format(new Date())) ;
+                        System.out.println("foo");
                     }
                 });
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        },"foofoo");
+        });
 
         Thread bar = new Thread(() -> {
             try {
                 my1.bar(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("1b"+" "+sdf.format(new Date()));
+                        System.out.println("bar");
                     }
                 });
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-        },"barbar");
+        });
+        Date date = new Date();
+
 
         f00.start();
         bar.start();
 
+
         f00.join();
         bar.join();
-
+        System.out.println(sdf.format(new Date().getTime()-date.getTime()));
 
     }
 }

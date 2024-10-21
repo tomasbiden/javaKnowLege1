@@ -1,4 +1,4 @@
-package org.mutiThred.Leecode.L117produceH20.myself;
+package org.bolin.mutiThred.Leecode.L117produceH20.myself;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
