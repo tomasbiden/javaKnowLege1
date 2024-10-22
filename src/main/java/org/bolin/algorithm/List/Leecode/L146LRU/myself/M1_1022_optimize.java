@@ -1,16 +1,16 @@
-package org.bolin.algorithm.List.Leecode.L206reverseList.myself;
+package org.bolin.algorithm.List.Leecode.L146LRU.myself;
 
 import java.util.HashMap;
 
-public class M1_1022 {
+public class M1_1022_optimize {
     int capacity=0;
 
     int size=0;
 
     HashMap<Integer,Node>  hashMap=new HashMap<>();
 
-    Node head=null;
-    Node tail=null;
+    Node head=new Node();
+    Node tail=new Node();
     public class Node{
         int key;
         int val;
@@ -35,50 +35,50 @@ public class M1_1022 {
 
     }
 
-    public M1_1022(int capacity) {
+    public M1_1022_optimize(int capacity) {
 
         this.capacity=capacity;
-        this.head=new Node();
-        this.tail=new Node();
+//        this.head=new Node();
+//        this.tail=new Node();
         head.next=tail;
         tail.pre=head;
 
 
     }
+    
+    public static  void moveToTail(Node hashGetNode,Node head,Node tail){
+        hashGetNode.pre.next=hashGetNode.next;
+
+        hashGetNode.next.pre=hashGetNode.pre;
+
+//            这句代码应该非常重要的啊
+       tail.pre.next=hashGetNode;
+
+        hashGetNode.pre=tail.pre;
+
+        tail.pre=hashGetNode;
+
+        hashGetNode.next=tail;
+    }
+    
+    public static  void  addNodeTail(Node newnode ,Node head,Node tail){
+        tail.pre.next= newnode;
+
+        newnode.pre=tail.pre;
+
+        newnode.next=tail;
+
+        tail.pre=newnode;
+        
+        
+    }
 
     public int get(int key) {
         if(hashMap.containsKey(key)){
-            /*
-            Node hashGetNode = hashMap.get(key);
-
-            hashGetNode.pre.next=hashGetNode.next;
-
-            hashGetNode.next.pre=hashGetNode.pre;
-
-            hashGetNode.pre=tail.pre;
-
-            tail.pre=hashGetNode;
-
-            hashGetNode.next=tail;
-
-            return hashGetNode.val;
-
-             */
 
             Node hashGetNode = hashMap.get(key);
 
-            hashGetNode.pre.next=hashGetNode.next;
-
-            hashGetNode.next.pre=hashGetNode.pre;
-
-//            这句代码应该非常重要的啊
-            tail.pre.next=hashGetNode;
-
-            hashGetNode.pre=tail.pre;
-
-            tail.pre=hashGetNode;
-
-            hashGetNode.next=tail;
+          moveToTail(hashGetNode,head,tail);
 
             return hashGetNode.val;
 
@@ -91,71 +91,33 @@ public class M1_1022 {
 
     public void put(int key, int value) {
 
-        Node newnode = new Node(key, value);
-
         if(hashMap.containsKey(key)){
             Node hashGetNode = hashMap.get(key);
-
-            hashGetNode.pre.next=hashGetNode.next;
-
-            hashGetNode.next.pre=hashGetNode.pre;
-
-            //            这句代码应该非常重要的啊
-            tail.pre.next=hashGetNode;
-
-            hashGetNode.pre=tail.pre;
-
-            tail.pre=hashGetNode;
-
-            hashGetNode.next=tail;
-
+           moveToTail(hashGetNode,head,tail);
             hashGetNode.val=value;
-
 //            hashMap.replace(key,hashGetNode);
 //            hashMap不用修改
-
             return;
         }
-
+        Node newnode = new Node(key, value);
         if(size==this.capacity){
             hashMap.remove(head.next.key);
             head=head.next;
-
-            tail.pre.next= newnode;
-
-            newnode.pre=tail.pre;
-
-            newnode.next=tail;
-
-            tail.pre=newnode;
-
+            addNodeTail(newnode,head,tail);
             hashMap.put(key,newnode);
-
             return;
-
-
         }
         size++;
-        tail.pre.next= newnode;
-
-        newnode.pre=tail.pre;
-
-        newnode.next=tail;
-
-        tail.pre=newnode;
-
+        addNodeTail(newnode,head,tail);
         hashMap.put(key,newnode);
-
         return;
-
-
-
 
 
     }
 
     public static void main(String[] args){
-        M1_1022 m11022 = new M1_1022(2);
+        /*
+        M1_1022_optimize m11022 = new M1_1022_optimize(2);
 
         m11022.put(1,1);
         System.out.println(m11022.head.next==null?1:0+" "+m11022.head.next.key+" "+ m11022.head.next.next.key);
@@ -174,6 +136,20 @@ public class M1_1022 {
 //        int x2=m11022.hashMap.get(2).val;
         Boolean x=m11022.hashMap.containsKey(2);
        System.out.println(x);
+
+         */
+        M1_1022_optimize m11022 = new M1_1022_optimize(2);
+        Node node = m11022.new Node();
+        Node head=null;
+        head=node;
+        System.out.println(node.pre);
+
+        node.pre=m11022.new Node();
+
+        System.out.println(node.pre);
+
+
+
     }
 
 }
