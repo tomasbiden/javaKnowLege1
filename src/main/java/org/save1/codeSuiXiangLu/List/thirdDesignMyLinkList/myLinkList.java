@@ -21,9 +21,9 @@ public class myLinkList {
         return  currentNode.val;
      }
       public void addAtHead(int val){
-          ListNode newNode = new ListNode(val);
-          newNode.next=head.next;
-          head.next=newNode;
+          ListNode newnode = new ListNode(val);
+          newnode.next=head.next;
+          head.next=newnode;
           size++;
 //          注意size
 
@@ -33,8 +33,8 @@ public class myLinkList {
          while (current.next!=null){
              current=current.next;
          }
-          ListNode newNode = new ListNode(val);
-         current.next=newNode;
+          ListNode newnode = new ListNode(val);
+         current.next=newnode;
          size++;
       }
 
@@ -50,9 +50,9 @@ public class myLinkList {
          for(int i=0;i<index;i++){
              pre=pre.next;
          }
-          ListNode newNode = new ListNode(val);
-         newNode.next=pre.next;
-         pre.next=newNode;
+          ListNode newnode = new ListNode(val);
+         newnode.next=pre.next;
+         pre.next=newnode;
          size++;
 
 
