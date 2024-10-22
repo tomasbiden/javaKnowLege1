@@ -42,11 +42,11 @@ class L146LRU {
         DLinkedNode node = cache.get(key);
         if (node == null) {
             // 如果 key 不存在，创建一个新的节点
-            DLinkedNode newNode = new DLinkedNode(key, value);
+            DLinkedNode newnode = new DLinkedNode(key, value);
             // 添加进哈希表
-            cache.put(key, newNode);
+            cache.put(key, newnode);
             // 添加至双向链表的头部
-            addToHead(newNode);
+            addToHead(newnode);
             ++size;
             if (size > capacity) {
                 // 如果超出容量，删除双向链表的尾部节点

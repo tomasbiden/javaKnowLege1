@@ -28,9 +28,9 @@ public class BM11 {
                 int value=p1.val+carry;
 
                 carry=value/10;
-                ListNode newNode=new ListNode(value%10);
-                newNode.next=nextNode;
-                nextNode=newNode;
+                ListNode newnode=new ListNode(value%10);
+                newnode.next=nextNode;
+                nextNode=newnode;
 
 
                 continue;
@@ -40,9 +40,9 @@ public class BM11 {
                 int value=p2.val+carry;
 
                 carry=value/10;
-                ListNode newNode=new ListNode(value%10);
-                newNode.next=nextNode;
-                nextNode=newNode;
+                ListNode newnode=new ListNode(value%10);
+                newnode.next=nextNode;
+                nextNode=newnode;
                 continue;
 
             }
@@ -53,9 +53,9 @@ public class BM11 {
 
 
             carry=value/10;
-            ListNode newNode=new ListNode(value%10);
-            newNode.next=nextNode;
-            nextNode=newNode;
+            ListNode newnode=new ListNode(value%10);
+            newnode.next=nextNode;
+            nextNode=newnode;
 
 
 
