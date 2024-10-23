@@ -98,7 +98,7 @@ public class my1 {
          int [] nums=new int[]{99,99};
         my1 my1 = new my1();
 //        原来是乌龙事件，自己先调用了啊
-//      System.out.println(  my1.paritition(nums,0,nums.length-1));
+//      System.out.println(  My1_241023.paritition(nums,0,nums.length-1));
 
         System.out.println(my1.findKthLargest(nums,1));
 
