@@ -5,5 +5,12 @@ public class gitStudy1 {
 
         int m=22323;
         int d=5;
+
+
+        int v=3;
+
+
+
+
     }
 }
