@@ -56,7 +56,7 @@ class tmp {
     }
 
     public static void main(String[] args) {
-        int i=1;
+        int i=2;
 
         char[][] chars = {
                 {'1', '1', '1', '0', '0'},
