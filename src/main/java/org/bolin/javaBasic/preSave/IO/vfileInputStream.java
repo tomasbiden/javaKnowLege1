@@ -26,8 +26,8 @@ public class vfileInputStream {
 
 
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-        String s = new String(bufferedInputStream.readAllBytes());
-        System.out.println(s);
+//        String s = new String(bufferedInputStream.readAllBytes());
+//        System.out.println(s);
 
     }
     public static void tFileReader() throws IOException {
