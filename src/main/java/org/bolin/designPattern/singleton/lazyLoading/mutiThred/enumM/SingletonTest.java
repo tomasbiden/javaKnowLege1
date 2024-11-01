@@ -10,6 +10,6 @@ public class SingletonTest {
         System.out.println(singleton1 == singleton2); // 输出 true
 
         // 调用方法
-        singleton1.doSomething(); // 输出 Doing something...
+//        singleton1.doSomething(); // 输出 Doing something...
     }
 }
