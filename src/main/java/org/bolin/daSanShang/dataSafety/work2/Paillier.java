@@ -5,22 +5,24 @@ import java.security.SecureRandom;
 
 public class Paillier {
     private BigInteger p, q, n, nsquare, g, lambda, mu;
+//    密钥长度
     private int bitLength;
 
-    // 使用 BigInteger 来表示 2^32
-    private static BigInteger  lowBound = BigInteger.valueOf(2).pow(32); // 等同于 2^32
+    //  p,q的下限
+    private BigInteger  lowBound ;
 
     // 构造函数，初始化密钥参数
     public Paillier(int bitLength) {
         this.bitLength = bitLength;
+        lowBound = BigInteger.valueOf(2).pow(bitLength);
     }
 
     // 1. 密钥生成
-    public void keyGeneration(BigInteger studentIdReversed) {
+    public void keyGeneration(String studentIdReversed) {
         SecureRandom random = new SecureRandom();
 
-        String studentIdReversed2 = studentIdReversed.toString();
-        p=generatePrimeFromLastThree(studentIdReversed2);
+
+        p=generatePrimeFromLastThree(studentIdReversed);
 
 
         q = BigInteger.probablePrime(bitLength, new SecureRandom()); // 随机生成大素数 q
@@ -76,8 +78,8 @@ public class Paillier {
 
     // 根据倒序后三位生成 p
     private BigInteger generatePrimeFromLastThree(String reversedLastThree) {
+
         // 添加足够的位数
-//        long cur=Long.parseLong(reversedLastThree);
         BigInteger cur=new BigInteger(reversedLastThree);
 
 
@@ -95,40 +97,22 @@ public class Paillier {
         return cur;
     }
 
-    private BigInteger generatePrimeFromStudentId(String studentId) {
-        String reversedLastThree=getLastThreeReversed(studentId);
-        // 添加足够的位数
-//        long cur=Long.parseLong(reversedLastThree);
-        BigInteger cur=new BigInteger(reversedLastThree);
 
-
-        while (cur.compareTo(lowBound)==-1){
-//            注意要赋值啊
-            cur=cur.multiply(BigInteger.valueOf(10));
-
-        }
-
-        while (!cur.isProbablePrime(20)){
-//            注意要赋值啊
-            cur= cur.add(BigInteger.valueOf(1));
-
-        }
-        return cur;
-    }
 
     // 主方法，测试实验
     public static void main(String[] args) {
         // 学号后三位倒序（如最后一位是0，设置为1）
         String studentId = "32215300007";
-        BigInteger reversedId = new BigInteger(getLastThreeReversed(studentId));
+        String lastThreeReversed = getLastThreeReversed(studentId);
+
 
 
         // 实例化 Paillier
-        Paillier paillier = new Paillier(512); // 密钥长度512位
-        paillier.keyGeneration(reversedId);
+        Paillier paillier = new Paillier(19); // 密钥长度19位
+        paillier.keyGeneration(lastThreeReversed );
 
         // 明文数据
-        BigInteger m1 = reversedId; // 明文 m1
+        BigInteger m1 = new BigInteger(lastThreeReversed); // 明文 m1
         BigInteger m2 = m1.add(BigInteger.valueOf(18)); // 明文 m2 = m1 + 18
 
         // 加密过程
@@ -147,12 +131,12 @@ public class Paillier {
         System.out.println("p: " + paillier.p);
         System.out.println("q: " + paillier.q);
         System.out.println("n: " + paillier.n);
-        System.out.println("m1: " + m1 + ", m2: " + m2);
-        System.out.println("Encrypted m1: " + c1);
-        System.out.println("Encrypted m2: " + c2);
-        System.out.println("Decrypted m1: " + decryptedM1);
-        System.out.println("Decrypted m2: " + decryptedM2);
-        System.out.println("Homomorphic addition result (decrypted): " + decryptedAdd);
+        System.out.println("明文m1: " + m1 + ", 明文m2: " + m2);
+        System.out.println("密文m1: " + c1);
+        System.out.println("密文 m2: " + c2);
+        System.out.println("解密后的m1: " + decryptedM1);
+        System.out.println("解密后的 m2: " + decryptedM2);
+        System.out.println("同台加法后解密的结果为: " + decryptedAdd);
     }
 }
 
