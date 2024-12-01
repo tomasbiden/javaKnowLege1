@@ -57,6 +57,29 @@ public class RSA {
         return cur;
     }
 
+    private BigInteger generatePrimeFromStudentId(String studentId) {
+        String reversedLastThree=getLastThreeReversed(studentId);
+        // 添加足够的位数
+//        long cur=Long.parseLong(reversedLastThree);
+        BigInteger cur=new BigInteger(reversedLastThree);
+
+
+        while (cur.compareTo(lowBound)==-1){
+//            注意要赋值啊
+            cur=cur.multiply(BigInteger.valueOf(10));
+
+        }
+
+        while (!cur.isProbablePrime(20)){
+//            注意要赋值啊
+            cur= cur.add(BigInteger.valueOf(1));
+
+        }
+        return cur;
+    }
+
+
+
     // 加密
     public BigInteger encrypt(BigInteger message) {
         return message.modPow(e, n);

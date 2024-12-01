@@ -2,6 +2,7 @@ package org.bolin.daSanShang.dataSafety.work2;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Paillier {
     private BigInteger p, q, n, nsquare, g, lambda, mu;
@@ -15,6 +16,7 @@ public class Paillier {
     public Paillier(int bitLength) {
         this.bitLength = bitLength;
         lowBound = BigInteger.valueOf(2).pow(bitLength);
+//        ConcurrentHashMap
     }
 
     // 1. 密钥生成
@@ -128,9 +130,8 @@ public class Paillier {
         BigInteger decryptedAdd = paillier.decrypt(cAdd); // 解密 c_add
 
         // 输出结果
-        System.out.println("p: " + paillier.p);
-        System.out.println("q: " + paillier.q);
-        System.out.println("n: " + paillier.n);
+        System.out.println("公钥为 p: " + paillier.p+"  g:" +paillier.g);
+        System.out.println("私钥为 λ：" + paillier.lambda+"  μ"+paillier.mu);
         System.out.println("明文m1: " + m1 + ", 明文m2: " + m2);
         System.out.println("密文m1: " + c1);
         System.out.println("密文 m2: " + c2);
