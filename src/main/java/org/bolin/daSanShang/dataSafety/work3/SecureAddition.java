@@ -17,8 +17,8 @@ public class SecureAddition {
 
 
         // P1的输入 (x) 和 P2的输入 (y)
-        BigInteger x = new BigInteger("32215300007");  // 例如 x = 123456789
-        BigInteger y = new BigInteger("32215300025");  // 例如 y = 987654321
+        BigInteger x = new BigInteger("32215300007");  // 例如 x = 32215300007
+        BigInteger y = new BigInteger("32215300025");  // 例如 y = 32215300025
 
         // 分割x和y
         // P1生成x = x1 + x2，P2生成y = y1 + y2
@@ -43,10 +43,17 @@ public class SecureAddition {
         // 最终的和是 [x + y]_1 + [x + y]_2
         BigInteger finalResult = result1.add(result2);
 
-        System.out.println("\n计算结果:");
+        BigInteger realResult=x.add(y);
+
+        System.out.println("计算结果:");
         System.out.println("[x + y]_1 = x1 + y1 = " + result1);
         System.out.println("[x + y]_2 = x2 + y2 = " + result2);
         System.out.println("最终结果 x + y = " + finalResult);
+        if(finalResult.equals(realResult)){
+            System.out.println("计算结果结果与理论结果相同");
+        }
+
+
     }
 }
 
