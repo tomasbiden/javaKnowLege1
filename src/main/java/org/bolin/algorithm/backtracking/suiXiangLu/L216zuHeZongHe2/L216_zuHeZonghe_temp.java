@@ -3,7 +3,7 @@ package org.bolin.algorithm.backtracking.suiXiangLu.L216zuHeZongHe2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class L77_zuHeZonghe_temp {
+public class L216_zuHeZonghe_temp {
 
     public List<List<Integer>> combinationSum3(int k, int n) {
         int newN=9;
