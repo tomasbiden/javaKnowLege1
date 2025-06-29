@@ -1,7 +1,7 @@
 
 package org.bolin.algorithm.Tree.binaryTreeProperty.L543diameterOfBinaryTree;
 
-import org.bolin.algorithm.Tree.buildTree.BuildTree;
+import org.bolin.algorithm.Tree.build.buildTree.BuildTree;
 import org.bolin.algorithm.Tree.model.TreeNode;
 
 public class L543_250628_2
