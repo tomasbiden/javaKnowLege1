@@ -1,4 +1,50 @@
 package org.bolin.algorithm.DP.Leecode.L5longestPalindrome.myself;
+
+
+import java.util.Arrays;
+
+class L5_longestPalindrome_250717_1{
+    String maxString=new String();
+    public String longestPalindrome(String s) {
+        int[][] memory=new int[s.length()][s.length()];
+        for(int i=0;i<memory.length;i++){
+            Arrays.fill(memory[i],-1);
+        }
+
+        for(int i=0;i<s.length();i++){
+            for(int j=i;j<s.length();j++){
+                dsf(i,j,s,memory);
+            }
+        }
+        return maxString;
+
+
+    }
+    public boolean dsf(int i,int j,String s,int[][] memory){
+        if(memory[i][j]!=-1){
+            return memory[i][j]==1;
+        }
+        if(s.charAt(i)==s.charAt(j)){
+            if(j-i+1<=3){
+                memory[i][j]=1;
+            }else {
+                  memory[i][j]=dsf(i+1,j-1,s,memory)?1:0;
+            }
+        }else {
+           memory[i][j]=0;
+        }
+        if(memory[i][j]==1&&maxString.length()<j-i+1){
+            maxString=s.substring(i,j+1);
+        }
+        return memory[i][j]==1;
+    }
+
+    public static void main(String[] args){
+        L5_longestPalindrome_250717_1 l5LongestPalindrome2507171 = new L5_longestPalindrome_250717_1();
+        String babad = l5LongestPalindrome2507171.longestPalindrome("babad");
+
+    }
+}
 /*
 class Solution {
     public String longestPalindrome(String s) {
