@@ -3,6 +3,36 @@ package org.bolin.algorithm.backtracking.suiXiangLu.L131partition;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+class L131partition_250719_1{
+    public List<List<String>> partition(String s) {
+        List<List<String>> result=new ArrayList<>();
+        dfs(s,0,new ArrayList<>(),result);
+        return result;
+    }
+
+    private boolean checkValid(String s,int start,int end){
+        while (start<end){
+            if(s.charAt(start)!=s.charAt(end)){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+    private void dfs(String s,int start,List<String> path,List<List<String>> result){
+        if(start==s.length()){
+            result.add(new ArrayList<>(path));
+        }
+        for(int i=start;i<s.length();i++){
+            if(checkValid(s,start,i)){
+                path.add(s.substring(start,i+1));
+                dfs(s,i+1,path,result);
+                path.remove(path.size()-1);
+            }
+        }
+    }
+}
 class Partition_250629_1{
 
     List<String> path=new ArrayList<>();

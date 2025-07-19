@@ -4,6 +4,25 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+class L78_subsets{
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result=new ArrayList<>();
+        List<Integer> paht=new ArrayList<>();
+        dfs(nums,0,result,paht);
+        return result;
+    }
+    public void dfs(int[] nums,int startIndex,List<List<Integer>> result,List<Integer> path){
+        result.add(new ArrayList<>(path));
+        if(startIndex>=nums.length){
+            return;
+        }
+        for(int i=startIndex;i<nums.length;i++){
+            path.add(nums[i]);
+            dfs(nums,i+1,result,path);
+            path.remove(path.size()-1);
+        }
+    }
+}
 public class L78_2505_1 {
     List<List<Integer>> result=new ArrayList<>();
     LinkedList<Integer> path=new LinkedList<>();
