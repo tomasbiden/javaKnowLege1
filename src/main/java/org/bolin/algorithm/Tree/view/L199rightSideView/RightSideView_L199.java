@@ -1,4 +1,4 @@
-package org.bolin.algorithm.Tree.view.rightSideView;
+package org.bolin.algorithm.Tree.view.L199rightSideView;
 
 import org.bolin.algorithm.Tree.model.TreeNode;
 

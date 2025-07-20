@@ -2,7 +2,7 @@ package org.bolin.algorithm.List.Leecode.L146LRU.myself;
 
 import java.util.HashMap;
 
-public class My1_241108_1 {
+public class    My1_241108_1 {
     int size;
     int capacity;
 

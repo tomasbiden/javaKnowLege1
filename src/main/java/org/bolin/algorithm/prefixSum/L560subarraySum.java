@@ -2,6 +2,42 @@ package org.bolin.algorithm.prefixSum;
 
 import java.util.HashMap;
 import java.util.Map;
+class subarraySum_250720_1{
+
+    public int subarraySum(int[] nums, int k) {
+        Map<Integer,Integer> from0SumCntMap=new HashMap<>();
+        from0SumCntMap.put(0,1);
+        int reslut=0;
+        int sum=0;
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            reslut+=from0SumCntMap.getOrDefault(sum-k,0);
+
+            from0SumCntMap.merge(sum,1,Integer::sum);
+
+        }
+        return reslut;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class subarraySum_250702_1{
     public int subarraySum(int[] nums, int k) {
